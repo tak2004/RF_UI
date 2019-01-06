@@ -6,7 +6,7 @@
 
 #include <RadonFramework/Collections/AutoVector.hpp>
 #include <RadonFramework/Core/Pattern/Service.hpp>
-#include <RadonFramework/Diagnostics/Debugging/Error.hpp>
+#include <RadonFramework/Core/Common/Error.hpp>
 #include <RadonFramework/Drawing/Forms/DisplayInformation.hpp>
 #include <RadonFramework/Drawing/Forms/Resolution.hpp>
 #include <RadonFramework/IO/VirtualMouseButton.hpp>
@@ -28,7 +28,7 @@ enum Type
 };
 }
 
-struct WindowServiceError : public RF_Debug::Error<WindowServiceError,
+struct WindowServiceError : public RF_Common::Error<WindowServiceError,
                                                    WindowServiceErrors::Type,
                                                    WindowServiceErrors::MAX>
 {

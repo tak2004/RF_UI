@@ -1,10 +1,9 @@
-#include "RadonFramework/precompiled.hpp"
 #include "RadonFramework/Drawing/Forms/WindowServiceLocator.hpp"
-#include "WindowsWindowService.hpp"
-#include "WindowsWindow.hpp"
-#include "WindowsApplication.hpp"
-#include <RadonFramework/Math/Geometry/Size2D.hpp>
-#include <RadonFramework/IO/Log.hpp>
+#include "RadonFramework/Drawing/Forms/GDI/WindowsWindowService.hpp"
+#include "RadonFramework/Drawing/Forms/GDI/WindowsWindow.hpp"
+#include "RadonFramework/Drawing/Forms/GDI/WindowsApplication.hpp"
+#include "RadonFramework/Math/Geometry/Size2D.hpp"
+#include "RadonFramework/IO/Log.hpp"
 #include <SetupApi.h>
 #pragma comment(lib, "setupapi.lib")
 

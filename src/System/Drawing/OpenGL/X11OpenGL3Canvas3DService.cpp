@@ -1,6 +1,5 @@
-#include "RadonFramework/precompiled.hpp"
-#include <RadonFramework/backend/X11/Drawing/X11OpenGL3Canvas3DService.hpp>
-#include <RadonFramework/backend/X11/Drawing/X11OpenGL3Canvas3D.hpp>
+#include <RadonFramework/System/Drawing/OpenGL/X11OpenGL3Canvas3DService.hpp>
+#include <RadonFramework/System/Drawing/OpenGL/X11OpenGL3Canvas3D.hpp>
 
 using namespace RadonFramework::Drawing;
 

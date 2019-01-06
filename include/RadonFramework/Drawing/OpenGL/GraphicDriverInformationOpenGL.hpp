@@ -1,9 +1,12 @@
 #ifndef RF_GRAPHICDRIVERINFORMATIONOPENGL_HPP
 #define RF_GRAPHICDRIVERINFORMATIONOPENGL_HPP
 
+#include <RadonFramework/Core/Types/String.hpp>
+#include <RadonFramework/Core/Types/Float32.hpp>
+#include <RadonFramework/Core/Types/Float64.hpp>
 #include <RadonFramework/Collections/Array.hpp>
-#include <OpenGLCapabilities.hpp>
-#include <OpenGLCapabilitiesType.hpp>
+#include <RadonFramework/Drawing/OpenGL/OpenGLCapabilities.hpp>
+#include <RadonFramework/Drawing/OpenGL/OpenGLCapabilitiesType.hpp>
 
 namespace RadonFramework::Drawing {
 

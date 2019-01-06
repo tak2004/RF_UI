@@ -4,7 +4,7 @@
 #pragma once
 #endif
 
-#include <RadonFramework/System/Drawing/OpenGLTypes.hpp>
-#include <RadonFramework/System/Drawing/OpenGLXConstants.hpp>
+#include <RadonFramework/Drawing/OpenGL/OpenGLTypes.hpp>
+#include <RadonFramework/System/Drawing/OpenGL/OpenGLXConstants.hpp>
 
 #endif // RF_SYSTEM_DRAWING_OPENGLX_HPP

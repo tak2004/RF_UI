@@ -1,6 +1,5 @@
-#include "RadonFramework/precompiled.hpp"
-#include <RadonFramework/backend/X11/Forms/X11Application.hpp>
-#include <RadonFramework/backend/X11/Forms/X11Window.hpp>
+#include "RadonFramework/System/Drawing/Forms/X11Application.hpp"
+#include "RadonFramework/System/Drawing/Forms/X11Window.hpp"
 
 extern void ResolveEvent(XEvent& Event);
 

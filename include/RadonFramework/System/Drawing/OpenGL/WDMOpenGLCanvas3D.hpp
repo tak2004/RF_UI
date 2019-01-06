@@ -1,7 +1,7 @@
 #ifndef RF_WDMOPENGLCANVAS3D_HPP
 #define RF_WDMOPENGLCANVAS3D_HPP
 
-#include <OpenGLRenderer.hpp>
+#include <RadonFramework/Drawing/OpenGL/OpenGLRenderer.hpp>
 #include <RadonFramework/Drawing/AbstractCanvas.hpp>
 #include <windows.h>
 

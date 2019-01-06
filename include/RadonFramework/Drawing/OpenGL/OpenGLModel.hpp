@@ -1,6 +1,10 @@
 #ifndef RF_OPENGLMODEL_HPP
 #define RF_OPENGLMODEL_HPP
 
+#include <RadonFramework/Core/Types/Size.hpp>
+#include <RadonFramework/Core/Types/UInt32.hpp>
+#include <RadonFramework/Core/Types/Float32.hpp>
+
 namespace RadonFramework::Drawing {
 
 class OpenGLModel

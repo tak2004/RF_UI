@@ -11,6 +11,7 @@
 #include <RadonFramework/IO/VirtualKey.hpp>
 #include <RadonFramework/Math/Geometry/Point2D.hpp>
 #include <RadonFramework/Math/Geometry/Size2D.hpp>
+#include <RadonFramework/Memory/AutoPointerArray.hpp>
 
 namespace RadonFramework::Forms
 {

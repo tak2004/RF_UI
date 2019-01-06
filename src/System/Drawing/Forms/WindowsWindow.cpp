@@ -1,9 +1,8 @@
-#include "RadonFramework/precompiled.hpp"
-#include "WindowsWindow.hpp"
-#include <RadonFramework/Drawing/Forms/WindowServiceLocator.hpp>
-#include <RadonFramework/Math/Geometry/Size2D.hpp>
-#include "WindowsWindowService.hpp"
-#include "WindowsApplication.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindow.hpp"
+#include "RadonFramework/Drawing/Forms/WindowServiceLocator.hpp"
+#include "RadonFramework/Math/Geometry/Size2D.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindowService.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsApplication.hpp"
 #include "RadonFramework/Drawing/Forms/Cursor.hpp"
 #define WIN32_LEAN_AND_MEAN
 #define WIN32_EXTRA_LEAN

@@ -1,6 +1,7 @@
-#include "RadonFramework/precompiled.hpp"
-#include <GraphicDriverInformationOpenGL.hpp>
-#include <RadonFramework/Diagnostics/Debugging/Assert.hpp>
+#include "RadonFramework/Drawing/OpenGL/GraphicDriverInformationOpenGL.hpp"
+#include "RadonFramework/Core/Common/Assert.hpp"
+#include "RadonFramework/Core/Types/Utils/StringOperators.hpp"
+#include "RadonFramework/Core/Types/Convert.hpp"
 
 using namespace RadonFramework::Drawing;
 using namespace RadonFramework::Core::Types;

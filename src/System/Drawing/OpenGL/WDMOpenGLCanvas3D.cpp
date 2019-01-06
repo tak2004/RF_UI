@@ -1,14 +1,14 @@
-﻿#include "RadonFramework/precompiled.hpp"
-#include <RadonFramework/backend/GL/WindowsOpenGLConstants.hpp>
-#include <RadonFramework/backend/GL/OpenGLConstants.hpp>
-#include "OpenGL.hpp"
-#include "OpenGLSystem.hpp"
-#include <RadonFramework/Drawing/GraphicDriverInformation.hpp>
-#include <GraphicDriverInformationOpenGL.hpp>
-#include "WDMOpenGLCanvas3D.hpp"
-#include <RadonFramework/Drawing/Forms/AbstractWindow.hpp>
-#include <RadonFramework/Drawing/Forms/WindowServiceLocator.hpp>
-#include "WindowsApplication.hpp"
+﻿#include "RadonFramework/System/Drawing/OpenGL/WindowsOpenGLConstants.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGLConstants.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGL.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGLSystem.hpp"
+#include "RadonFramework/System/Drawing/OpenGL/WindowsOpenGL.hpp"
+#include "RadonFramework/Drawing/GraphicDriverInformation.hpp"
+#include "RadonFramework/Drawing/OpenGL/GraphicDriverInformationOpenGL.hpp"
+#include "RadonFramework/System/Drawing/OpenGL/WDMOpenGLCanvas3D.hpp"
+#include "RadonFramework/Drawing/Forms/AbstractWindow.hpp"
+#include "RadonFramework/Drawing/Forms/WindowServiceLocator.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindow.hpp"
 #include <RadonFramework/IO/Log.hpp>
 #include "RadonFramework/Collections/AutoVector.hpp"
 #include "RadonFramework/Collections/Algorithm/Exists.hpp"
@@ -303,7 +303,7 @@ void WDMOpenGLCanvas3D::GetExtensions(RF_Collect::Array<RF_Type::String>& Extens
     if(glGetError() == GL_NO_ERROR)
     {
         RF_Type::String extstr = RF_Type::String::UnsafeStringCreation(ext);
-        RF_Mem::AutoPointerArray<RF_Type::String> vec(extstr.Split(RF_Type::String(" ")));
+        RF_Type::StringSet vec = extstr.Split(" "_rfs);
         RF_Type::Size firstWGLEntry = Extensions.Count();
         Extensions.Resize(firstWGLEntry +vec.Count());
         for(RF_Type::Size i = 0; i < vec.Count(); ++i)
@@ -447,7 +447,7 @@ void WDMOpenGLCanvas3D::GetExtensionsLegacy(RF_Collect::Array<RF_Type::String>& 
     if(glGetError() == GL_NO_ERROR)
     {
         String extstr = String::UnsafeStringCreation(pext);
-        AutoPointerArray<String> vec(extstr.Split(String(" ")));
+        RF_Type::StringSet vec = extstr.Split(" "_rfs);
         Extensions.Resize(vec.Count());
         for(UInt32 i = 0; i < vec.Count(); ++i)
             Extensions(i) = vec[i];

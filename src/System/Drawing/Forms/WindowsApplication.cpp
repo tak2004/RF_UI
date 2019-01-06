@@ -1,6 +1,5 @@
-#include "RadonFramework/precompiled.hpp"
-#include "WindowsApplication.hpp"
-#include "WindowsWindow.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsApplication.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindow.hpp"
 #include "RadonFramework/System/DynamicLibrary.hpp"
 #define WIN32_LEAN_AND_MEAN
 #define WIN32_EXTRA_LEAN
@@ -117,7 +116,9 @@ RF_Type::String RadonFramework::Forms::WindowsApplication::GetClipboardText()
                     bytes = wcstombs(reinterpret_cast<char*>(buffer.Get()), reinterpret_cast<WCHAR*>(multybyteText), buffer.Size());
                     if(bytes > 0)
                     {
-                        result = RF_Type::String(buffer.Release(), bytes, RF_Core::DataManagment::TransfereOwnership);
+                      result = RF_Type::String(
+                          reinterpret_cast<char*>(buffer.Release().Ptr), bytes,
+                          RF_Core::DataManagment::TransfereOwnership);
                     }
                     GlobalUnlock(handle);
                 }

@@ -1,5 +1,8 @@
 #ifndef RF_GL_WINDOWSOPENGLCONSTANTS_HPP
 #define RF_GL_WINDOWSOPENGLCONSTANTS_HPP
+
+#include <RadonFramework/Core/Types/Int32.hpp>
+
 namespace RadonFramework { namespace GL {
 
 const RF_Type::Int32 WGL_SWAP_MAIN_PLANE = 0x00000001;

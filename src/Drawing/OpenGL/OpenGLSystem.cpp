@@ -1,4 +1,4 @@
-﻿#include "OpenGLSystem.hpp"
+﻿#include "RadonFramework/Drawing/OpenGL/OpenGLSystem.hpp"
 #include "RadonFramework/Defines.hpp"
 
 #if defined(RF_WINDOWS)

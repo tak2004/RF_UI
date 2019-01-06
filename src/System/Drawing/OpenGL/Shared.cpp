@@ -1,5 +1,4 @@
-#include "RadonFramework/precompiled.hpp"
-#include "WDMOpenGLCanvas3DService.hpp"
+#include "RadonFramework/System/Drawing/OpenGL/WDMOpenGLCanvas3DService.hpp"
 
 #if defined (__cplusplus)
 extern "C" {

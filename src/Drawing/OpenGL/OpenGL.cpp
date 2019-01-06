@@ -1,5 +1,5 @@
-#include "OpenGL.hpp"
-#include "OpenGLSystem.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGL.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGLSystem.hpp"
 
 void glAccumDispatcher(GLenum op,GLfloat value){
 	glAccum = reinterpret_cast<glAccumCallback>(OpenGLGetProcAddress("glAccum"));

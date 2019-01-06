@@ -1,7 +1,7 @@
 #include "RadonFramework/precompiled.hpp"
 #include "RadonFramework/Drawing/Canvas3DServiceLocator.hpp"
-#include "WDMOpenGLCanvas3DService.hpp"
-#include "WDMOpenGLCanvas3D.hpp"
+#include "RadonFramework/System/Drawing/OpenGL/WDMOpenGLCanvas3DService.hpp"
+#include "RadonFramework/System/Drawing/OpenGL/WDMOpenGLCanvas3D.hpp"
 
 using namespace RadonFramework::Drawing;
 

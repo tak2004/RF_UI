@@ -1,6 +1,5 @@
-#include <RadonFramework/precompiled.hpp>
-#include "OpenGLRenderer.hpp"
-#include "OpenGL.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGLRenderer.hpp"
+#include "RadonFramework/Drawing/OpenGL/OpenGL.hpp"
 #include "RadonFramework/Drawing/AbstractCanvas.hpp"
 #include "RadonFramework/Drawing/BasicRenderFunction.hpp"
 
@@ -18,7 +17,8 @@ void OpenGLRenderer::Generate(const RF_Geo::Size2Df& FrameSize)
     m_ShaderPool(0).Generate();
 
     glCreateBuffers(1, &m_SharedUBO);
-    glNamedBufferData(m_SharedUBO, sizeof(SharedTransformUniforms), &m_SharedTransformUniforms, GL_STREAM_DRAW);
+    glNamedBufferData(m_SharedUBO, sizeof(SharedTransformUniforms),
+                      &m_SharedTransformUniforms, RF_GL::GL_STREAM_DRAW);
 
     ResizedViewport(FrameSize);
 }
@@ -109,7 +109,7 @@ void OpenGLRenderer::ResizedViewport(const RF_Geo::Size2Df& NewSize)
     m_SharedTransformUniforms.ModelView = m_Camera.GetMatrix();
     m_SharedTransformUniforms.ModelViewProjection = m_Projection.GetMatrix(RF_Geo::Viewtype::View3D) *m_SharedTransformUniforms.ModelView;
     m_SharedTransformUniforms.UIProjection = m_Projection.GetMatrix(RF_Geo::Viewtype::View2D);
-    glBindBufferBase(GL_UNIFORM_BUFFER, 0, m_SharedUBO);
+    glBindBufferBase(RF_GL::GL_UNIFORM_BUFFER, 0, m_SharedUBO);
     glNamedBufferSubData(m_SharedUBO, 0, sizeof(SharedTransformUniforms), &m_SharedTransformUniforms);
 }
 
@@ -117,9 +117,10 @@ void GL45GenerateBuffer(void* Command)
 {    
     GenerateBuffer* cmd = reinterpret_cast<GenerateBuffer*>(Command);
     glCreateBuffers(1, cmd->Buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, *cmd->Buffer);
-    glBufferData(GL_ARRAY_BUFFER, cmd->ByteSize, nullptr, GL_STREAM_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, cmd->ByteSize, cmd->Data);
+    glBindBuffer(RF_GL::GL_ARRAY_BUFFER, *cmd->Buffer);
+    glBufferData(RF_GL::GL_ARRAY_BUFFER, cmd->ByteSize, nullptr,
+                 RF_GL::GL_STREAM_DRAW);
+    glBufferSubData(RF_GL::GL_ARRAY_BUFFER, 0, cmd->ByteSize, cmd->Data);
 }
 
 void GLDestroyBuffer(void* Command)
@@ -132,9 +133,10 @@ void GLDestroyBuffer(void* Command)
 void GLUpdateBuffer(void* Command)
 {
     UpdateBuffer* cmd = reinterpret_cast<UpdateBuffer*>(Command);
-    glBindBuffer(GL_ARRAY_BUFFER, *cmd->Buffer);
-    glBufferData(GL_ARRAY_BUFFER, cmd->ByteSize, nullptr, GL_STREAM_DRAW);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, cmd->ByteSize, cmd->Data);
+  glBindBuffer(RF_GL::GL_ARRAY_BUFFER, *cmd->Buffer);
+    glBufferData(RF_GL::GL_ARRAY_BUFFER, cmd->ByteSize, nullptr,
+               RF_GL::GL_STREAM_DRAW);
+  glBufferSubData(RF_GL::GL_ARRAY_BUFFER, 0, cmd->ByteSize, cmd->Data);
 }
 
 template<class T>
@@ -221,8 +223,10 @@ void GLAssignBufferToObject(void* Command)
     GLObject* obj = GLObjectFactory::Get(*cmd->Object);
 
     glBindVertexArray(obj->VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, *cmd->Buffer);
-    glVertexAttribPointer(obj->Buffers, cmd->Stride, GL_FLOAT, GL_FALSE, 0, NULL);
+    glBindBuffer(RF_GL::GL_ARRAY_BUFFER, *cmd->Buffer);
+    glVertexAttribPointer(obj->Buffers, cmd->Stride, RF_GL::GL_FLOAT,
+                          RF_GL::GL_FALSE,
+                          0, nullptr);
     glEnableVertexAttribArray(obj->Buffers);
     ++obj->Buffers;
 }
@@ -249,19 +253,19 @@ void GLRenderObject(void* Command)
     GLMaterial* mat = MaterialFactory::Get(obj->MaterialId);
     if(mat->Blending)
     {
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      glEnable(RF_GL::GL_BLEND);
+      glBlendFunc(RF_GL::GL_SRC_ALPHA, RF_GL::GL_ONE_MINUS_SRC_ALPHA);
     }
     else
     {
-        glDisable(GL_BLEND);
+      glDisable(RF_GL::GL_BLEND);
     }
     glUseProgram(mat->ProgramID);
     glBindVertexArray(obj->VAO);
     if (cmd->ElementType == RF_Draw::RenderObject::PointSprites)
-        glDrawArrays(GL_POINTS, 0, cmd->Elements);
+      glDrawArrays(RF_GL::GL_POINTS, 0, cmd->Elements);
     else
-        glDrawArrays(GL_TRIANGLES, 0, cmd->Elements);
+      glDrawArrays(RF_GL::GL_TRIANGLES, 0, cmd->Elements);
 }
 
 void GLGenerateMaterial(void* Command)
@@ -284,15 +288,15 @@ void GLGenerateProgram(void* Command)
     *cmd->Program = 0;
     if (cmd->FragmentData != nullptr && cmd->VertexData != nullptr)
     {
-        GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+      GLuint vs = glCreateShader(RF_GL::GL_VERTEX_SHADER);
         glShaderSource(vs, 1, &cmd->VertexData, nullptr);
         glCompileShader(vs);
         GLint isCompiled = 0;
-        glGetShaderiv(vs, GL_COMPILE_STATUS, &isCompiled);
-        if(isCompiled == GL_FALSE)
+        glGetShaderiv(vs, RF_GL::GL_COMPILE_STATUS, &isCompiled);
+        if(isCompiled == RF_GL::GL_FALSE)
         {
             GLint maxLength = 0;
-            glGetShaderiv(vs, GL_INFO_LOG_LENGTH, &maxLength);
+          glGetShaderiv(vs, RF_GL::GL_INFO_LOG_LENGTH, &maxLength);
             RF_Collect::Array<GLchar> errorLog(maxLength);
             glGetShaderInfoLog(vs, maxLength, &maxLength, &errorLog(0));
             RF_IO::LogError("Vertex-Shader:%s\n", &errorLog(0));
@@ -300,14 +304,14 @@ void GLGenerateProgram(void* Command)
             return;
         }
 
-        GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+        GLuint fs = glCreateShader(RF_GL::GL_FRAGMENT_SHADER);
         glShaderSource(fs, 1, &cmd->FragmentData, NULL);
         glCompileShader(fs);
-        glGetShaderiv(fs, GL_COMPILE_STATUS, &isCompiled);
-        if(isCompiled == GL_FALSE)
+        glGetShaderiv(fs, RF_GL::GL_COMPILE_STATUS, &isCompiled);
+        if(isCompiled == RF_GL::GL_FALSE)
         {
             GLint maxLength = 0;
-            glGetShaderiv(fs, GL_INFO_LOG_LENGTH, &maxLength);
+          glGetShaderiv(fs, RF_GL::GL_INFO_LOG_LENGTH, &maxLength);
             RF_Collect::Array<GLchar> errorLog(maxLength);
             glGetShaderInfoLog(fs, maxLength, &maxLength, &errorLog(0));
             RF_IO::LogError("Fragment-Shader:%s\n", &errorLog(0));
@@ -321,11 +325,11 @@ void GLGenerateProgram(void* Command)
         glAttachShader(program, vs);
         glLinkProgram(program);
         GLint isLinked = 0;
-        glGetProgramiv(program, GL_LINK_STATUS, (int *)&isLinked);
-        if(isLinked == GL_FALSE)
+        glGetProgramiv(program, RF_GL::GL_LINK_STATUS, (int*)&isLinked);
+        if(isLinked == RF_GL::GL_FALSE)
         {
             GLint maxLength = 0;
-            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+          glGetProgramiv(program, RF_GL::GL_INFO_LOG_LENGTH, &maxLength);
             RF_Collect::Array<GLchar> infoLog(maxLength);
             glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog(0));
             RF_IO::LogError("Fragment-Shader:%s\n", &infoLog(0));
@@ -355,13 +359,13 @@ GLenum Channel2GLInternalFormat(const GenerateTexture& Command)
     switch(Command.Channels)
     {
         case 1:
-            result = GL_R8;
+        result = RF_GL::GL_R8;
             break;
         case 3:
-            result = GL_RGB8;
+          result = RF_GL::GL_RGB8;
             break;
         default:
-            result = GL_RGBA8;
+          result = RF_GL::GL_RGBA8;
             break;
     }
     return result;
@@ -373,19 +377,19 @@ GLenum Channel2GLFormat(const GenerateTexture& Command)
     switch(Command.Channels)
     {
         case 1:
-            result = GL_RED;
+        result = RF_GL::GL_RED;
             break;
         case 2:
-            result = GL_RG;
+          result = RF_GL::GL_RG;
             break;
         case 3:
-            result = GL_RGB;
+          result = RF_GL::GL_RGB;
             break;
         case 4:
-            result = GL_RGBA;
+          result = RF_GL::GL_RGBA;
             break;
         default:
-            result = GL_RGBA;
+          result = RF_GL::GL_RGBA;
             break;
     }
     return result;
@@ -394,18 +398,20 @@ GLenum Channel2GLFormat(const GenerateTexture& Command)
 void GLGenerateTexture(void* Command)
 {
     GenerateTexture* cmd = reinterpret_cast<GenerateTexture*>(Command);
-    glCreateTextures(GL_TEXTURE_2D,1, cmd->Texture);
+  glCreateTextures(RF_GL::GL_TEXTURE_2D, 1, cmd->Texture);
     auto internalFormat = Channel2GLInternalFormat(*cmd);
     auto format = Channel2GLFormat(*cmd);
     glTextureStorage2D(*cmd->Texture, 1, internalFormat, cmd->Width, cmd->Height);
-    glTextureSubImage2D(*cmd->Texture, 0, 0, 0, cmd->Width, cmd->Height, format, GL_UNSIGNED_BYTE, cmd->Data);
+    glTextureSubImage2D(*cmd->Texture, 0, 0, 0, cmd->Width, cmd->Height, format,
+                        RF_GL::GL_UNSIGNED_BYTE, cmd->Data);
     glBindTextureUnit(0, *cmd->Texture);
 }
 
 void GLUpdateTexture(void* Command)
 {
     UpdateTexture* cmd = reinterpret_cast<UpdateTexture*>(Command);
-    glTextureSubImage2D(*cmd->Texture, 0, 0, 0, cmd->Width, cmd->Height, GL_RGBA, GL_UNSIGNED_BYTE, cmd->Data);
+  glTextureSubImage2D(*cmd->Texture, 0, 0, 0, cmd->Width, cmd->Height,
+                        RF_GL::GL_RGBA, RF_GL::GL_UNSIGNED_BYTE, cmd->Data);
 }
 
 void GLDestroyTexture(void* Command)

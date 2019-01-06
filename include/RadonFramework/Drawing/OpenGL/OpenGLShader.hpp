@@ -1,6 +1,8 @@
 #ifndef RF_OPENGLSHADER_HPP
 #define RF_OPENGLSHADER_HPP
 
+#include <RadonFramework/Core/Types/UInt32.hpp>
+
 namespace RadonFramework::Drawing {
 
 class OpenGLShader

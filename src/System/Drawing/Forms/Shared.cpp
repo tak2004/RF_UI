@@ -1,5 +1,4 @@
-#include "RadonFramework/precompiled.hpp"
-#include "WindowsWindowService.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindowService.hpp"
 
 #if defined (__cplusplus)
 extern "C" {
