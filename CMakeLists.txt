@@ -9,7 +9,7 @@ if(NOT CMAKE_PROJECT_NAME OR "${CMAKE_PROJECT_NAME}" MATCHES "^RF_UI$")
 endif()
 
 include("Integrate.cmake")
-rcf_addpackage(radonframework "dev")
+rcf_addpackage(radonframework)
 rcf_addpackage(libtess2)
 
 set(DiagFiles src/Drawing/Forms/GPUInfoGraph.cpp)
