@@ -8,8 +8,8 @@
 #include <RadonFramework/Drawing/Camera.hpp>
 #include <RadonFramework/Math/Geometry/Matrix.hpp>
 #include <RadonFramework/Math/Geometry/ProjectionMatrix.hpp>
-#include "OpenGLModel.hpp"
-#include "OpenGLShader.hpp"
+#include <RadonFramework/Drawing/OpenGL/OpenGLModel.hpp>
+#include <RadonFramework/Drawing/OpenGL/OpenGLShader.hpp>
 
 namespace RadonFramework::Drawing {
 

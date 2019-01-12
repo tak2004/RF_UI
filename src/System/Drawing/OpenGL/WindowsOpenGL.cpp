@@ -1,4 +1,4 @@
-#include "RadonFramework/Drawing/OpenGL/DWM/WindowsOpenGL.hpp"
+#include "RadonFramework/System/Drawing/OpenGL/WindowsOpenGL.hpp"
 #include "RadonFramework/Drawing/OpenGL/OpenGLSystem.hpp"
 
 BOOL wglChoosePixelFormatARBDispatcher(HDC hdc, const int *piAttribIList,

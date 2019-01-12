@@ -27,6 +27,7 @@ public:
   virtual void KeyReleased(const IO::KeyboardEvent& Value);
   virtual void PrintableKeyPressed(const IO::KeyboardEvent& Value);
   virtual const AbstractWindow* Backend() const;
+  virtual AbstractWindow* Backend();
   ///
   virtual void SetWindowSize(const RF_Geo::Size2D<>& NewSize);
   ///

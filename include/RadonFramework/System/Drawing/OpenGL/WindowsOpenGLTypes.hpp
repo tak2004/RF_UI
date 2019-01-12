@@ -4,9 +4,7 @@
 #pragma once
 #endif
 
-#ifndef _WINDOWS_
 #include <windows.h>
-#endif // !_WINDOWS_
 
 struct _GPU_DEVICE
 {
