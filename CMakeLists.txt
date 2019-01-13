@@ -15,12 +15,10 @@ rcf_addpackage(libtess2)
 set(DiagFiles src/Drawing/Forms/GPUInfoGraph.cpp)
 SET_SOURCE_FILES_PROPERTIES(${DiagFiles} PROPERTIES HEADER_FILE_ONLY ON)
 
-set(WindowsFiles src/System/Drawing/Forms/Shared.cpp
-    src/System/Drawing/Forms/WindowsApplication.cpp
+set(WindowsFiles src/System/Drawing/Forms/WindowsApplication.cpp
     src/System/Drawing/Forms/WindowsWindow.cpp
     src/System/Drawing/Forms/WindowsWindowService.cpp
     src/System/Drawing/SystemTrayServiceWindows.cpp
-    src/System/Drawing/OpenGL/Shared.cpp
     src/System/Drawing/OpenGL/WDMOpenGLCanvas3D.cpp
     src/System/Drawing/OpenGL/WDMOpenGLCanvas3DService.cpp
     src/System/Drawing/OpenGL/WindowsOpenGL.cpp)
