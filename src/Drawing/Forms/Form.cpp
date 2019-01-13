@@ -130,6 +130,11 @@ const AbstractWindow* Form::Backend()const
     return m_Backend;
 }
 
+AbstractWindow* RadonFramework::Forms::Form::Backend()
+{
+  return m_Backend;
+}
+
 RF_Type::Bool Form::HasFocus()const
 {
     return m_Backend->HasFocus();

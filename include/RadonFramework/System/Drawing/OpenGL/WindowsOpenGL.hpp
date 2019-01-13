@@ -4,7 +4,9 @@
 #pragma once
 #endif
 
-#include <RadonFramework/System/Drawing/OpenGL/WindowsOpenGLTypes.hpp>
+#define NOGDI
+#include <windows.h>
+#undef NOGDI
 #include <RadonFramework/System/Drawing/OpenGL/WindowsOpenGLConstants.hpp>
 
 using wglChoosePixelFormatARBCallback = BOOL (*)(HDC hdc, const int *piAttribIList,

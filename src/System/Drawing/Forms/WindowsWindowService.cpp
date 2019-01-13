@@ -1,7 +1,7 @@
 #include "RadonFramework/Drawing/Forms/WindowServiceLocator.hpp"
-#include "RadonFramework/Drawing/Forms/GDI/WindowsWindowService.hpp"
-#include "RadonFramework/Drawing/Forms/GDI/WindowsWindow.hpp"
-#include "RadonFramework/Drawing/Forms/GDI/WindowsApplication.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindowService.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsWindow.hpp"
+#include "RadonFramework/System/Drawing/Forms/WindowsApplication.hpp"
 #include "RadonFramework/Math/Geometry/Size2D.hpp"
 #include "RadonFramework/IO/Log.hpp"
 #include <SetupApi.h>

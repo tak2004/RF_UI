@@ -40,6 +40,7 @@ if(UNIX)
 	SET_SOURCE_FILES_PROPERTIES(${WindowsFiles} PROPERTIES HEADER_FILE_ONLY ON)
 endif(UNIX)	
 
+set(RF_UI_LIBS "OpenGL32")
 rcf_generate(module RF_UI RadonFrameworkUI "Framework")
     rcf_add_recursive("src/" "Source")
     rcf_add_recursive("include/RadonFramework/" "Includes")
